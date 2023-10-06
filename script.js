@@ -9,6 +9,7 @@ var today = dayjs();
 $('#currentDay').text(today.format('MMM D, YYYY'));
 
 
+
 $(document).ready(function () {
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
@@ -29,14 +30,27 @@ $(document).ready(function () {
     var textArea = $(".description").val();
     console.log("textarea:_" + textArea);
 
-    if (textArea.trim() !== "") {
-      localStorage.setItem("textArea", textArea);
-      alert("Textarea content saved to local storage!");
+    // if (textArea.trim() !== "") {
+    //   localStorage.setItem("textArea", textArea);
+    //   alert("Textarea content saved to local storage!");
 
-    } else {
-      alert("Textarea is empty. Please enter some text to save.")
-    }
+    // } else {
+    //   alert("Textarea is empty. Please enter some text to save.")
+    // }
   })
+
+  // function to populate time slots with previous values. This needs to
+  // be outside of the click event.
+  $(".time-block").each(function () {
+    var hourId = $(this).attr("id");
+    var savedDescription = localStorage.getItem(hourId);
+    if (savedDescription !== null) {
+      $(this).find(".description").val(savedDescription);
+    }
+
+    // $(this).attr("class").removeClass('present past future').addClass("past");
+
+  });
 
 
 });
@@ -49,6 +63,12 @@ $(document).ready(function () {
 // past, present, and future classes? How can Day.js be used to get the
 // current hour in 24-hour time?
 //
+// Iterate through classes and update them with past/present/future coloes.
+// $(".time-block").each(function () {
+//   var id = $("#id");
+//   console.log(id);
+//   $(".time-block").removeClass('present past future').addClass("past");
+// });
 //
 // TODO: Add code to get any user input that was saved in localStorage and set
 // the values of the corresponding textarea elements. HINT: How can the id
