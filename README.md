@@ -22,47 +22,50 @@ There was plenty of Googling done, along with youtube, chatgpt and some tutoring
 
 ## How the program will work
 
-<h2>Here we have the layout as the browser sees it</h2>
+<h2>Here we have the opening page of the deployed project</h2>
 
-![Front Page to Quiz](./assets/images/front_page_quiz.png)
+![Front Page to Daily Scheduler](./assets/images/planner_without_anything.png)
 
 
-<h2>Same view but with a button highlighted as if to be selected</h>
+<h2>Now we have some saved data that is persistent</h2>
 
-![Button Selected on Site](./assets/images/Front_page_with_selection.png)
+![Persistant data](./assets/images/planner_with_stored_items.png)
 
-<h2> And finally, here's the snippet of the index.html ... mostly simple.
+<h2> Lastly we have the key-value the is stored in local memory </h2>
+
+<h2> Here is a code snippet of the javascript running the project
 
 ```html
-<body>
-<div class="itBegins">
-    <h1> Hello and Welcom to the Simple Quiz</h1>
-    <div class="putQHere">
-        <h2 class="questionH2">Question Goes Here</h2>
-        <div class="ansButtons">
-            <button class="button">answershere1</button>
-            <button class="button">answershere2</button>
-            <button class="button">answershere3</button>
-            <button class="button">answershere4</button>
-        </div>
-        <button class="nextButton">NextQ</button>
-    </div>
+$(".saveBtn").click(function () {
 
-    <div class="correctAnsDiv">
-        <h2 class="correctAnsH2"></h2>
-    </div>
-</div>```
+    // Add a click event listener to all elements with the "saveBtn" class
+    // Find the corresponding description element for the clicked save button
+    // Also learned about parent/chile
+    var textArea = $(this).siblings(".description").val();
+
+    // Find the hour id for the corresponding time-block
+    var hourId = $(this).closest(".time-block").attr("id");
+
+    if (textArea.trim() !== "") {
+      // Use the hour id as a key to save the textarea in local storage
+      localStorage.setItem(hourId, textArea);
+      alert("Textarea content saved to local storage!");
+    } else {
+      alert("Textarea is empty. Please enter some text to save.");
+    }
+  });```
 
 
 ## Thoughts on this project
 
-Looking back, if I had at least completed the javascript to answer the questions, it would have been a success to me as it would not take much more time to get the help needed to present the answers into the web-page. Will do that next time to complete what I can/know first and unblock self with help.
+There was some mistakes, and time I could have used better, but there really are some areas that I need work on. .. getting turoring and
+whatever help I can every day. I'll come back and fix this thing later.
 
 ## Where to find this code and website
 | Links to Code        | Resource URL           |
 | ------------- |:-------------:|
-| Simple Quiz Run Page   | [https://flimits.github.io/simple_quiz/](https://flimits.github.io/simple_quiz/) |
-| GitHub Repo | [https://github.com/flimits/simple_quiz](https://github.com/flimits/simple_quiz)     |
+| Simple Quiz Run Page   | [https://flimits.github.io/daily-scheduler/](https://flimits.github.io/daily-scheduler/) |
+| GitHub Repo | [https://github.com/flimits/daily-scheduler](https://github.com/flimits/daily-scheduler)     |
 
 ## Some Technologies Relyed upon to complete this task
 | Technology Used         | Resource URL           |
@@ -74,23 +77,3 @@ Looking back, if I had at least completed the javascript to answer the questions
 | Docs from Class | Hitting the class notes and materials and drills    |
 
 
-
-## My Pseudo code used when creating the code to create this program.
-
-****
-
-- There will be a web page with a title.
-- There will be a an area for the question and several buttons with answers to choose from.
-- you will need variales to store
-   - Your score: wons and losses
-   - The counter
-   - Presenting the questions
-   - presenting the answer and storing correct one.
-   - creating local storage so answers can be persistant on refresh
-- A timer will need to be running as soon as a start button is clicked.
-- Present the first question.
-- Compare the answer with the questions presented, and decided if the answer is true or false.
-- Save that score off and present it to the screen.
-- If the answer is correct, add some time to the timer (or pause it if possible).
-- Keep asking questions until you run out of them or the timer hits zero.
-- Your final score will be the time left on the timer.
