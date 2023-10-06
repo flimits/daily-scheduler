@@ -28,7 +28,6 @@ $(document).ready(function () {
     // Find the hour id for the corresponding time-block
     var hourId = $(this).closest(".time-block").attr("id");
 
-    console.log("hourid:_ " + hourId)
     if (textArea.trim() !== "") {
       // Use the hour id as a key to save the textarea in local storage
       localStorage.setItem(hourId, textArea);
@@ -49,10 +48,28 @@ $(document).ready(function () {
 
   });
 
+  // The following code was supposed to be able to update each cell with the current color
+  // Scheme as it iterated down the list. However, this proved have have a bug in it that 
+  // I could not resolve. I am leaving the code and asking for help.
+  var currentHour = "hour-" + dayjs().hour();
+  // $(".time-block").each(function () {
+  //   // Get the hour from the time-block's ID (e.g., "hour-9" => 9)
+
+  //   var hourIdOfBlock = $(this).attr("id");
+  //   var hourId = hourIdOfBlock.replace("hour-",'');
+
+  //   // // Compare hourId (like hour-9) to currentHour and update classes accordingly
+  //   if (hourId < currentHour) {
+  //     $(this).removeClass("present future past").addClass("row time-block past]");
+  //   } else if (hourId === currentHour) {
+  //     $(this).removeClass("row time-block present future past").addClass("row time-block present");
+  //   } else {
+  //     $(this).removeClass("row time-block present future past").addClass("row time-block future");
+  //   }
+  // });
+
 
 });
-
-// function updateColorSchemeForHour(){}
 //
 // TODO: Add code to apply the past, present, or future class to each time
 // block by comparing the id to the current hour. HINTS: How can the id
